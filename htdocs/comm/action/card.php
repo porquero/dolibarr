@@ -268,8 +268,12 @@ if ($action == 'add')
 		$object->datep = $datep;
 		$object->datef = $datef;
 		$object->percentage = $percentage;
-		$object->duree=((float) (GETPOST('dureehour') * 60) + (float) GETPOST('dureemin')) * 60;
-
+		
+		// Avoid non-numeric Warning.
+		if(empty($fulldayevent) === TRUE){
+		    $object->duree=((float) (GETPOST('dureehour') * 60) + (float) GETPOST('dureemin')) * 60;
+		}
+		
 		$transparency=(GETPOST("transparency")=='on'?1:0);
 
 		$listofuserid=array();
